@@ -1,5 +1,11 @@
+package Algorithm.MyTest;
+
 import java.util.*;
-public class Solution {
+
+/**
+ * 找出"abcdabceabc"中重复次数最多的字符串且长度不小于3
+ */
+public class FindMostString {
 
     public static void main(String[] args) {
         String s = "abcdabceabc";
