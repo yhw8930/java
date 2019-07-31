@@ -1,4 +1,4 @@
-package Test2018;
+package LeetCode;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -23,13 +23,10 @@ public class DeleteSameString {
         for (int i = 0; i < len; i++) {
             s[i] = String.valueOf(numbers[i]);
         }
-        Arrays.sort(s, new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                String ss1 = s1+s2;
-                String ss2 = s2+s1;
-                return ss1.compareTo(ss2);
-            }
+        Arrays.sort(s, (s1, s2) -> {
+            String ss1 = s1+s2;
+            String ss2 = s2+s1;
+            return ss1.compareTo(ss2);
         });
         for (int i = 0; i < len; i++) {
             sb.append(s[i]);
