@@ -272,10 +272,29 @@ public class BinaryTree {
         return node;
     }
 
+    //查找第k个数
+    int index = 0; //计数器
+    TreeNode KthNode(TreeNode root, int k)
+    {
+        if(root != null){ //中序遍历寻找第k个
+            TreeNode node = KthNode(root.left,k);
+            if(node != null)
+                return node;
+            index ++;
+            if(index == k)
+                return root;
+            node = KthNode(root.right,k);
+            if(node != null)
+                return node;
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         int[] data = {2, 8, 7, 4, 9, 3, 1, 6, 7, 5};
         createTree(data);
+        System.out.println(tree.KthNode(root, 10).data);
         System.out.print("二叉树的先序遍历：");
         preOrder(root);
         System.out.println();
