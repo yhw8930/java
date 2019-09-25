@@ -38,9 +38,10 @@ class TreeNode {
 
 //二叉排序树
 public class BinaryTree {
-    private static TreeNode root;   //根节点
+    private static TreeNode root;       //根节点
     private static int count = 0;       //节点数
     private static int leafCount = 0;   //叶子结点数
+    private static int maxLen = 0;      //二叉树最远路径
 
     public BinaryTree() {
         root = null;
@@ -241,53 +242,66 @@ public class BinaryTree {
     }
 
     //序列化二叉树
-    public static String serializeTreeByPre(TreeNode treeRoot){
-        if (treeRoot==null){
+    public static String serializeTreeByPre(TreeNode treeRoot) {
+        if (treeRoot == null) {
             return "#!";
         }
-        String rs=treeRoot.data+"!";
-        rs+=serializeTreeByPre(treeRoot.left);
-        rs+=serializeTreeByPre(treeRoot.right);
+        String rs = treeRoot.data + "!";
+        rs += serializeTreeByPre(treeRoot.left);
+        rs += serializeTreeByPre(treeRoot.right);
         return rs;
     }
 
     //反序列化二叉树
-    public static TreeNode reconTreeByPreString(String str){
-        String[] values=str.split("!");
-        Queue<String> queue=new LinkedList<>();
-        for (int i = 0; i <values.length ; i++) {
+    public static TreeNode reconTreeByPreString(String str) {
+        String[] values = str.split("!");
+        Queue<String> queue = new LinkedList<>();
+        for (int i = 0; i < values.length; i++) {
             queue.offer(values[i]);
         }
         return reconPreOrder(queue);
     }
 
     private static TreeNode reconPreOrder(Queue<String> queue) {
-        String value=queue.poll();
-        if (value.equals("#")){
+        String value = queue.poll();
+        if (value.equals("#")) {
             return null;
         }
-        TreeNode node=new TreeNode(Integer.valueOf(value));
-        node.left=reconPreOrder(queue);
-        node.right=reconPreOrder(queue);
+        TreeNode node = new TreeNode(Integer.valueOf(value));
+        node.left = reconPreOrder(queue);
+        node.right = reconPreOrder(queue);
         return node;
     }
 
     //查找第k个数
     int index = 0; //计数器
-    TreeNode KthNode(TreeNode root, int k)
-    {
-        if(root != null){ //中序遍历寻找第k个
-            TreeNode node = KthNode(root.left,k);
-            if(node != null)
+
+    TreeNode KthNode(TreeNode root, int k) {
+        if (root != null) { //中序遍历寻找第k个
+            TreeNode node = KthNode(root.left, k);
+            if (node != null)
                 return node;
-            index ++;
-            if(index == k)
+            index++;
+            if (index == k)
                 return root;
-            node = KthNode(root.right,k);
-            if(node != null)
+            node = KthNode(root.right, k);
+            if (node != null)
                 return node;
         }
         return null;
+    }
+
+    //二叉树节点的最远距离
+    public static int findMaxLen(TreeNode root) {
+        if (root == null) return 0;
+        if (root.left == null && root.right == null) return 0;
+        int leftMaxLen = findMaxLen(root.left) + 1;
+        int righttMaxLen = findMaxLen(root.right) + 1;
+        int temp = leftMaxLen + righttMaxLen;
+        if (temp > maxLen) {
+            maxLen = temp;
+        }
+        return leftMaxLen > righttMaxLen ? leftMaxLen : righttMaxLen;
     }
 
     public static void main(String[] args) {
@@ -304,7 +318,11 @@ public class BinaryTree {
         System.out.print("二叉树的后序遍历：");
         postOrder(root);
         System.out.println();
+        System.out.print("二叉树的层次遍历：");
         layerTranverse();
+        System.out.println();
+        System.out.print("二叉树的最远距离: ");
+        System.out.println(findMaxLen(root));
         System.out.println();
         preOrder1(root);
         inOrder1(root);
@@ -315,9 +333,10 @@ public class BinaryTree {
         System.out.println("叶子结点的数目：" + leafCount);
         System.out.println("树的深度为：" + getBinaryTreeDepth(root));
         System.out.println(root.right.left.left.right.data + "的父节点是" + getParent(root, root.right.left.left.right).data);
-        String s=serializeTreeByPre(root);
+        String s = serializeTreeByPre(root);
         System.out.println(s);
-        TreeNode t=reconTreeByPreString(s);
+        TreeNode t = reconTreeByPreString(s);
         postOrder1(t);
     }
 }
+
