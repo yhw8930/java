@@ -15,7 +15,7 @@ import java.util.Set;
  * 3.优化的滑动窗口（HashMap）
  * 时间复杂度：O(n) ; 空间复杂度：O(n)
  */
-public class lengthOfLongestSubstring_3 {
+public class P3_无重复字符的最长子串 {
 
     public static int lengthOfLongestSubstring1(String s) {
         int n = s.length();

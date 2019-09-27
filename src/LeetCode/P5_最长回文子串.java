@@ -10,7 +10,7 @@ package LeetCode;
  * 4、Manacher算法：1. 插入#号变为全奇 2. 令RL[i]=min(RL[2*pos-i], MaxRight-i) 3.以i为中心扩展回文串 4.更新MaxRight和pos
  * 时间复杂度：O(n) 空间复杂度：O(1)
  */
-public class LongestPalindrome_5 {
+public class P5_最长回文子串 {
     public String longestPalindrome1(String s) {
         if (s == null || s.length() == 0) return null;
         if (s.length() == 1) {
@@ -102,7 +102,7 @@ public class LongestPalindrome_5 {
 
 
     public static void main(String[] args) {
-        LongestPalindrome_5 palindrome = new LongestPalindrome_5();
+        P5_最长回文子串 palindrome = new P5_最长回文子串();
         String s1 = palindrome.longestPalindrome1("afdfesasdsa");
         System.out.println("暴力解法：" + s1);
         //System.out.println("暴力解法：" + s1);

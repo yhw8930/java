@@ -10,9 +10,9 @@ import java.util.Stack;
  * 注意空字符串可被认为是有效字符串。
  * 链接：https://leetcode-cn.com/problems/valid-parentheses
  */
-public class ValidParentheses_20 {
+public class P20_有效的括号 {
     public static void main(String[] args) {
-        ValidParentheses_20 p = new ValidParentheses_20();
+        P20_有效的括号 p = new P20_有效的括号();
         System.out.println(p.isValid("{[]}"));
     }
 

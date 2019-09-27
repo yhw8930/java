@@ -9,9 +9,9 @@ package LeetCode;
  * 双指针法2：两个指针往中间移动，其中每次让较小的往中间移
  * 时间复杂度：O(n) 空间复杂度：O(1)
  */
-public class MaxArea_11 {
+public class P11_盛最多水的容器 {
     public static void main(String[] args) {
-        MaxArea_11 maxArea = new MaxArea_11();
+        P11_盛最多水的容器 maxArea = new P11_盛最多水的容器();
         int[] arr = {1, 8, 6, 2, 5, 4, 8, 3, 7};
         //System.out.println(maxArea.maxArea1(arr));
         System.out.println(maxArea.maxArea2(arr));
