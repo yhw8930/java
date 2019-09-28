@@ -281,7 +281,7 @@ public class LinkedList {
     public Node searchMid(Node head) {
         Node p = head;
         Node q = head;
-        while (p != null && p.next != null && p.next.next != null) {
+        while (p != null && p.next != null) {
             p = p.next.next;
             q = q.next;
         }

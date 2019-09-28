@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 public class P27_最小的K个数 {
     public static void main(String[] args) {
         int[] ints = {4, 5, 1, 6, 2, 7, 3, 8};
-        ArrayList<Integer> list = new P27_最小的K个数().getLeastNumbers(ints, 4);
+        ArrayList<Integer> list = new P27_最小的K个数().GetLeastNumbers_Solution(ints, 4);
         for (Integer integer : list) {
             System.out.print(integer + " ");
         }
@@ -27,15 +27,13 @@ public class P27_最小的K个数 {
                 queue.offer(input[i]);
             }
         }
-        for (Integer integer : queue) {
-            list.add(integer);
-        }
+        list.addAll(queue);
         return list;
     }
 
     public ArrayList<Integer> getLeastNumbers(int[] input, int k) {
 
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> list = new ArrayList<>();
         while (input == null || input.length == 0 || k <= 0 || k > input.length)
             return list;
         int start = 0;
@@ -45,7 +43,7 @@ public class P27_最小的K个数 {
             if (index < k - 1) {
                 index = partition(input, index + 1, end);
             } else {
-                index = partition(input, index - 1, end);
+                index = partition(input, start, index - 1);
             }
         }
         for (int i = 0; i < k; i++) {

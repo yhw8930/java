@@ -6,27 +6,36 @@ import java.util.Map;
 /**
  * 输入两个链表，找出它们的第一个公共结点
  */
+class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+
 public class P34_两个链表的第一个公共结点 {
     public static void main(String[] args) {
 
     }
 
     public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
-        if(pHead1==null||pHead2==null){
+        if (pHead1 == null || pHead2 == null) {
             return null;
         }
         ListNode p1 = pHead1;
         ListNode p2 = pHead2;
-        Map<ListNode,Integer> map = new HashMap<>();
-        while(p1!=null){
-            map.put(p1,1);
-            p1=p1.next;
+        Map<ListNode, Integer> map = new HashMap<>();
+        while (p1 != null) {
+            map.put(p1, 1);
+            p1 = p1.next;
         }
-        while(p2!=null){
-            if(map.containsKey(p2)){
+        while (p2 != null) {
+            if (map.containsKey(p2)) {
                 return p2;
             }
-            p2=p2.next;
+            p2 = p2.next;
         }
         return null;
     }
