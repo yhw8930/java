@@ -1,5 +1,4 @@
 package LeetCode;
-
 /**
  * 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
  * <p>
@@ -7,14 +6,6 @@ package LeetCode;
  * <p>
  * 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
  */
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-        val = x;
-    }
-}
-
 public class P2_两数相加 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null) {
