@@ -50,7 +50,7 @@ public class P3_无重复字符的最长子串 {
         }
         return ans;
     }
-
+    //abcddb
     public static int lengthOfLongestSubstring3(String s) {
         int n = s.length(), ans = 0;
         Map<Character, Integer> map = new HashMap<>();
@@ -62,5 +62,23 @@ public class P3_无重复字符的最长子串 {
             map.put(s.charAt(j), j + 1);
         }
         return ans;
+    }
+
+    public static int lengthOfLongestSubstring4(String s) {
+        int n = s.length(), ans = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (int j = 0, i = 0; j < n; j++) {
+            if (map.containsKey(s.charAt(j))&&(map.get(s.charAt(j))>=i)) {
+                i = map.get(s.charAt(j))+1;
+            }
+            ans = Math.max(ans, j - i + 1);
+            map.put(s.charAt(j), j);
+        }
+        return ans;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring4("abcddb"));
     }
 }
