@@ -1,0 +1,9 @@
+### Example user template template
+### Example user template
+
+.idea/
+*.iml
+*.xml
+out/
+gen/
+*.cache
