@@ -30,7 +30,7 @@ public class P322_零钱兑换_完全背包dp {
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
     }
 
-    public static int coinChange2(int[] coins, int amount) {
+    public static int coinChange3(int[] coins, int amount) {
         int N = coins.length;
         int[][] dp = new int[N + 1][amount + 1];
         for (int rest = 1; rest <= amount; rest++) {
@@ -42,6 +42,35 @@ public class P322_零钱兑换_完全背包dp {
                 if (rest >= coins[index] && dp[index][rest - coins[index]] != Integer.MAX_VALUE) {
                     dp[index][rest] = Math.min(dp[index][rest], dp[index][rest - coins[index]] + 1);
                 }
+            }
+        }
+        return dp[0][amount] == Integer.MAX_VALUE ? -1 : dp[0][amount];
+    }
+
+    public static int coinChange2(int[] coins, int amount) {
+        if (coins == null || coins.length == 0) {
+            return amount == 0 ? 0 : -1;
+        }
+        int N = coins.length;
+        int[][] dp = new int[N + 1][amount + 1];
+        // base case:
+        // index == N 时，没有硬币了
+        // rest == 0，需要 0 枚硬币
+        // rest > 0，不可能，记为 Integer.MAX_VALUE
+        dp[N][0] = 0;
+        for (int rest = 1; rest <= amount; rest++) {
+            dp[N][rest] = Integer.MAX_VALUE;
+        }
+        for (int index = N - 1; index >= 0; index--) {
+            for (int rest = 0; rest <= amount; rest++) {
+                int ans = Integer.MAX_VALUE;
+                for (int zhang = 0; zhang * coins[index] <= rest; zhang++) {
+                    int next = dp[index + 1][rest - zhang * coins[index]];
+                    if (next != Integer.MAX_VALUE) {
+                        ans = Math.min(ans, zhang + next);
+                    }
+                }
+                dp[index][rest] = ans;
             }
         }
         return dp[0][amount] == Integer.MAX_VALUE ? -1 : dp[0][amount];
@@ -73,21 +102,4 @@ public class P322_零钱兑换_完全背包dp {
         }
         return ans;
     }
-
-
-//    public int coinChange(int[] coins, int amount) {
-//        if (coins == null || coins.length == 0) return -1;
-//        int[] dp = new int[amount + 1];
-//        Arrays.fill(dp, amount + 1);
-//        dp[0] = 0;
-//        for (int i = 1; i <= amount; i++) {
-//            for (int j = 0; j < coins.length; j++) {
-//                if (coins[j] <= i) {
-//                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
-//                }
-//            }
-//        }
-//        return dp[amount] > amount ? -1 : dp[amount];
-//    }
-
 }
