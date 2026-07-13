@@ -95,8 +95,8 @@ public class Code02_MaxSubBSTHead {
 				maxSubBSTSize = rightInfo.maxSubBSTSize;
 			}
 		}
-		if ((leftInfo == null ? true : (leftInfo.maxSubBSTHead == X.left && leftInfo.max < X.value))
-				&& (rightInfo == null ? true : (rightInfo.maxSubBSTHead == X.right && rightInfo.min > X.value))) {
+		if ((leftInfo == null || (leftInfo.maxSubBSTHead == X.left && leftInfo.max < X.value))
+				&& (rightInfo == null || (rightInfo.maxSubBSTHead == X.right && rightInfo.min > X.value))) {
 			maxSubBSTHead = X;
 			maxSubBSTSize = (leftInfo == null ? 0 : leftInfo.maxSubBSTSize)
 					+ (rightInfo == null ? 0 : rightInfo.maxSubBSTSize) + 1;

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Explain Algorithms"
+  short_description: "Write Chinese explanations above algorithm entry methods."
+  default_prompt: "Use $explain to explain this algorithm above its source file's entry method."

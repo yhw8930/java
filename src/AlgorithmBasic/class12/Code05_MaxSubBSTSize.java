@@ -37,6 +37,15 @@ public class Code05_MaxSubBSTSize {
 		in(head.right, arr);
 	}
 
+	/**
+	 * 解法一：枚举每棵子树的根节点，并用 getBSTSize 判断当前整棵子树是否为搜索二叉树。
+	 * getBSTSize 收集子树的中序遍历结果；若序列严格递增，当前整棵子树就是 BST，
+	 * 可以直接返回其节点数。否则继续在左右子树中分别寻找，取两者的较大值。
+	 * 判断中使用严格递增，因此重复值不符合这里的 BST 定义。
+	 *
+	 * 时间复杂度：最坏 O(N^2)，因为多棵子树会被重复中序遍历。
+	 * 额外空间复杂度：O(N)，用于中序序列和递归调用栈。
+	 */
 	public static int maxSubBSTSize1(Node head) {
 		if (head == null) {
 			return 0;
@@ -145,6 +154,18 @@ public class Code05_MaxSubBSTSize {
 //		return new Info(isAllBST, maxSubBSTSize, min, max);
 //	}
 
+	/**
+	 * 解法二：树形 DP，每个节点只处理一次。process 为每棵子树返回四项信息：
+	 * maxBSTSubtreeSize 是子树内最大 BST 子树的节点数，allSize 是子树总节点数，
+	 * max 和 min 分别是子树的最大值和最小值。
+	 * 当前答案有三种来源：p1 是左子树内的最大 BST，p2 是右子树内的最大 BST，
+	 * p3 是以当前节点为根的整棵子树。只有左右子树整体都是 BST，
+	 * 且左子树最大值严格小于当前值、当前值严格小于右子树最小值时，p3 才成立。
+	 * maxBSTSubtreeSize == allSize 表示该子树的最大 BST 已经覆盖全部节点，即子树整体是 BST。
+	 *
+	 * 时间复杂度：O(N)。
+	 * 额外空间复杂度：O(H)，H 为树高，来自递归调用栈。
+	 */
 	public static int maxSubBSTSize2(Node head) {
 		if(head == null) {
 			return 0;
@@ -194,11 +215,11 @@ public class Code05_MaxSubBSTSize {
 			p2 = rightInfo.maxBSTSubtreeSize;
 		}
 		int p3 = -1;
-		boolean leftBST = leftInfo == null ? true : (leftInfo.maxBSTSubtreeSize == leftInfo.allSize);
-		boolean rightBST = rightInfo == null ? true : (rightInfo.maxBSTSubtreeSize == rightInfo.allSize);
+		boolean leftBST = leftInfo == null || (leftInfo.maxBSTSubtreeSize == leftInfo.allSize);
+		boolean rightBST = rightInfo == null || (rightInfo.maxBSTSubtreeSize == rightInfo.allSize);
 		if (leftBST && rightBST) {
-			boolean leftMaxLessX = leftInfo == null ? true : (leftInfo.max < x.value);
-			boolean rightMinMoreX = rightInfo == null ? true : (x.value < rightInfo.min);
+			boolean leftMaxLessX = leftInfo == null || (leftInfo.max < x.value);
+			boolean rightMinMoreX = rightInfo == null || (x.value < rightInfo.min);
 			if (leftMaxLessX && rightMinMoreX) {
 				int leftSize = leftInfo == null ? 0 : leftInfo.allSize;
 				int rightSize = rightInfo == null ? 0 : rightInfo.allSize;

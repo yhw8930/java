@@ -16,17 +16,6 @@ package LeetCode;
  * /  \
  * 15   7
  */
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-    }
-}
-
 public class P105_从前序与中序遍历序列构造二叉树 {
     public static void main(String[] args) {
 

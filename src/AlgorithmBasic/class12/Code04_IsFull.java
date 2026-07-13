@@ -12,6 +12,16 @@ public class Code04_IsFull {
 		}
 	}
 
+	/**
+	 * 解法一：利用满二叉树的节点数公式 N = 2^H - 1。
+	 * h 单独递归计算树高 H，n 再单独递归统计节点数 N，
+	 * 最后检查二者是否满足公式。空树高度和节点数都为 0，视为满二叉树。
+	 * 该实现使用 int 保存节点数并计算 1 << height，因此假设树高较小，
+	 * 否则会受 Java int 溢出和位移距离取模规则影响。
+	 *
+	 * 时间复杂度：O(N)，但会完整遍历树两次。
+	 * 额外空间复杂度：O(H)，H 为树高，来自递归调用栈。
+	 */
 	public static boolean isFull1(Node head) {
 		if (head == null) {
 			return true;
@@ -35,6 +45,15 @@ public class Code04_IsFull {
 		return n(head.left) + n(head.right) + 1;
 	}
 
+	/**
+	 * 解法二：用树形 DP 在一次后序遍历中同时收集子树高度和节点数。
+	 * process 的返回约定是：height 表示当前子树高度，nodes 表示当前子树节点数；
+	 * 父节点用左右子树信息合并出自己的 Info。根节点最终仍通过 N = 2^H - 1 判断是否为满二叉树。
+	 * 相比 isFull1，该方法只完整遍历一次，但同样受 int 节点数和 1 << height 的取值范围限制。
+	 *
+	 * 时间复杂度：O(N)。
+	 * 额外空间复杂度：O(H)，H 为树高，来自递归调用栈。
+	 */
 	public static boolean isFull2(Node head) {
 		if (head == null) {
 			return true;

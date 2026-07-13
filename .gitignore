@@ -1,9 +1,14 @@
 ### Example user template template
 ### Example user template
 
-*.idea/*
+# JetBrains IDE
+.idea/
 *.iml
-*.xml
-*out/*
-*gen/*
+
+# Build output
+out/
+gen/
+
+# Cache
+.cache/
 *.cache
