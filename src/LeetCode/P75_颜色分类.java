@@ -14,6 +14,11 @@ public class P75_颜色分类 {
             System.out.print(anInt+" ");
         }
     }
+    /**
+     * 荷兰国旗划分：[0,less] 全为 0，[less+1,p) 全为 1，[more,n) 全为 2，[p,more) 待处理。
+     * 遇 0 与左边界后一位交换并前进；遇 2 与右边界前一位交换，但 p 不动，因为换回的数尚未检查。
+     * 时间 O(N)，额外空间 O(1)。
+     */
     public void sortColors(int[] nums) {
         int less = -1, more = nums.length, p = 0;
         while (p < more) {

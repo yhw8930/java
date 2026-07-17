@@ -6,6 +6,11 @@ package LeetCode;
  */
 public class P23_合并K个排序链表 {
 
+    /**
+     * 分治将 K 条链表不断对半拆分，再像归并排序一样合并两边的有序结果。
+     * 设所有链表共 N 个节点，每个节点在 log K 层合并中各被处理一次，
+     * 时间复杂度 O(N log K)；递归栈 O(log K)，合并过程复用原节点。
+     */
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
         return mergeKLists(lists, 0, lists.length - 1);

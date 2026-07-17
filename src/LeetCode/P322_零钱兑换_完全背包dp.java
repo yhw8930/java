@@ -14,6 +14,11 @@ public class P322_零钱兑换_完全背包dp {
         System.out.println(coinChange(ints, 11));
     }
 
+    /**
+     * 一维完全背包：dp[rest] 是凑出 rest 的最少硬币数，不可达用 Integer.MAX_VALUE 表示。
+     * 每种硬币的 rest 正序遍历，使 dp[rest-coin] 可以已包含当前硬币，从而允许重复使用。
+     * 时间 O(N·amount)，额外空间 O(amount)。
+     */
     public static int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
@@ -30,6 +35,11 @@ public class P322_零钱兑换_完全背包dp {
         return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
     }
 
+    /**
+     * 二维优化 DP：dp[index][rest] 表示使用 coins[index..] 凑 rest 的最少枚数。
+     * 转移在不用当前硬币和至少用一枚之间取小；后者依赖本行 rest-coin，体现可重复选择。
+     * 时间 O(N·amount)，额外空间 O(N·amount)。
+     */
     public static int coinChange3(int[] coins, int amount) {
         int N = coins.length;
         int[][] dp = new int[N + 1][amount + 1];
@@ -47,6 +57,10 @@ public class P322_零钱兑换_完全背包dp {
         return dp[0][amount] == Integer.MAX_VALUE ? -1 : dp[0][amount];
     }
 
+    /**
+     * 枚举型二维 DP：对每个状态显式枚举当前面值使用 zhang 枚，再接上下一种硬币的结果。
+     * 时间最坏 O(N·amount²/minCoin)，额外空间 O(N·amount)。
+     */
     public static int coinChange2(int[] coins, int amount) {
         if (coins == null || coins.length == 0) {
             return amount == 0 ? 0 : -1;
@@ -77,6 +91,10 @@ public class P322_零钱兑换_完全背包dp {
     }
 
 
+    /**
+     * 暴力递归：process(index,rest) 枚举当前面值使用张数，再递归处理后续面值。
+     * 无记忆化，存在大量重复子问题，时间复杂度为指数级；递归栈 O(N)。
+     */
     public static int coinChange1(int[] coins, int amount) {
         if (coins == null || coins.length == 0) {
             return amount == 0 ? 0 : -1;

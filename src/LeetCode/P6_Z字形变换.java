@@ -18,6 +18,11 @@ public class P6_Z字形变换 {
         System.out.println(new P6_Z字形变换().convert("LEETCODEISHIRING", 3));
     }
 
+    /**
+     * 为每一行建立 StringBuilder，curRows 指向当前行，flag 表示向下还是向上移动。
+     * 到达第一行或最后一行时翻转方向，将字符按 Z 形路径分配后逐行拼接。
+     * 时间复杂度：O(N)；额外空间：O(N)。
+     */
     public String convert(String s, int numRows) {
         if (numRows == 1) return s;
         List<StringBuilder> list = new ArrayList<>();

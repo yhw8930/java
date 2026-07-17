@@ -16,6 +16,11 @@ public class P122_买卖股票的最佳时机II {
         System.out.println(new P122_买卖股票的最佳时机II().maxProfit(ints));
     }
 
+    /**
+     * 贪心累加每两个相邻交易日之间的正收益。任意一段上涨区间的“低买高卖”收益，
+     * 都等于该区间内每天正差值之和，所以这样不会错过任何利润。
+     * 时间复杂度：O(N)；额外空间：O(1)。
+     */
     public int maxProfit(int[] prices) {
         int maxProfit = 0;
         for (int i = 1; i < prices.length; i++) {

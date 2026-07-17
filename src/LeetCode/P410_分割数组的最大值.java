@@ -20,6 +20,11 @@ public class P410_分割数组的最大值 {
         System.out.println(new P410_分割数组的最大值().splitArray(ints,2));
     }
 
+    /**
+     * f[i][j] 表示将前 i 个数分成 j 个非空连续段时，各段和的最大值所能取到的最小值。
+     * 枚举最后一段的起点 k，候选答案是 max(f[k][j-1], prefix[i]-prefix[k])，对所有 k 取小。
+     * 时间复杂度：O(MN²)；额外空间：O(MN)。
+     */
     public int splitArray(int[] nums, int m) {
         int n = nums.length;
         int[][] f = new int[n + 1][m + 1];

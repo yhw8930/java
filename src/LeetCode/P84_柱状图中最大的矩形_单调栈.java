@@ -17,6 +17,11 @@ public class P84_柱状图中最大的矩形_单调栈 {
         System.out.println(largestRectangleArea(heights));
     }
 
+    /**
+     * 单调递增栈保存柱子下标。当当前高度不大于栈顶时，栈顶柱子的右侧第一个更矮位置已确定，
+     * 弹栈后的新栈顶是左侧第一个更矮位置，因此可结算以被弹柱高为矩形高的最大宽度。
+     * 扫描结束后以数组末尾作为剩余柱子的右边界。时间 O(N)，额外空间 O(N)。
+     */
     public static int largestRectangleArea(int[] heights) {
         if (heights == null || heights.length == 0) {
             return 0;

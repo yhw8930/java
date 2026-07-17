@@ -19,6 +19,12 @@ public class P134_加油站 {
         System.out.println(new P134_加油站().canCompleteCircuit(gas, cpst));
     }
 
+    /**
+     * total 累加全程净油量，cur 累加从当前候选起点 index 出发后的剩余油量。
+     * 若到 i 时 cur < 0，则 index..i 中任意位置都不可能是起点，可直接改从 i+1 尝试。
+     * 最后 total < 0 说明总油量不足，否则剩下的候选起点必然可行。
+     * 时间复杂度：O(N)；额外空间：O(1)。
+     */
     public int canCompleteCircuit(int[] gas, int[] cost) {
         int total = 0, cur = 0, index = 0;
         for (int i = 0; i < gas.length; i++) {

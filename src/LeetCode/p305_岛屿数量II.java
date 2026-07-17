@@ -17,6 +17,11 @@ public class p305_岛屿数量II {
         // [1,1,2,3]
     }
 
+    /**
+     * 使用并查集动态维护岛屿连通分量数。每次将新格子初始化为一个独立集合，sets 加 1，
+     * 再与上下左右已是陆地的邻格合并；每成功合并两个不同根，sets 减 1。重复添加同一格不改变结果。
+     * 路径压缩与按大小合并使 K 次操作的均摊时间为 O(K·α(MN))，额外空间 O(MN)。
+     */
     public static List<Integer> numIslands2(int m, int n, int[][] positions) {
         UnionFind1 uf = new UnionFind1(m, n);
         List<Integer> ans = new ArrayList<>();

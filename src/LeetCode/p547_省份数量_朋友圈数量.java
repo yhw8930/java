@@ -13,6 +13,10 @@ public class p547_省份数量_朋友圈数量 {
         System.out.println(findCircleNum(isConnected));
     }
 
+    /**
+     * 初始每个城市独立成一个并查集，只扫描连接矩阵的上三角；每遇到一条连接就合并两个城市集合。
+     * 两个不同根合并时 sets 减 1，最终集合数就是省份数。时间 O(N²)，额外空间 O(N)。
+     */
     public static int findCircleNum(int[][] isConnected) {
         int N = isConnected.length;
         UnionFind unionFind = new UnionFind(N);

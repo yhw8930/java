@@ -16,6 +16,12 @@ public class P20_有效的括号 {
         System.out.println(p.isValid("{[]}"));
     }
 
+    /**
+     * 扫描字符串：左括号入栈，右括号必须与当前栈顶左括号同类，否则立即失败。
+     * 结束时栈为空才表示所有括号完全匹配。代码依赖原题保证只包含六种括号字符。
+     * `s == ""` 是引用比较而非内容比较，但该分支多余且不影响空串的最终正确结果。
+     * 时间复杂度：O(N)；额外空间：O(N)。
+     */
     public boolean isValid(String s) {
         if (s == "") return true;
         Stack<Character> stack = new Stack<>();

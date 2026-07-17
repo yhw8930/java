@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class P236_二叉树的最近公共祖先 {
+    /**
+     * 树形 DP：process 为每棵子树返回是否找到 p、是否找到 q，以及已确定的最近公共祖先。
+     * 若左右子树已有答案则向上传递；否则当当前子树首次同时包含 p 和 q 时，当前节点就是答案。
+     * 时间复杂度：O(N)；递归额外空间：O(H)。
+     */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         return process(root, p, q).ans;
     }
@@ -41,6 +46,11 @@ public class P236_二叉树的最近公共祖先 {
         return new Info(findP, findQ, ans);
     }
 
+    /**
+     * 先遍历整棵树建立“节点 -> 父节点”映射，将 p 到根的所有祖先放入集合；
+     * 再q 不断向上，首个出现在该集合中的节点就是最近公共祖先。
+     * 时间复杂度：O(N)；额外空间：O(N)。
+     */
     public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return null;

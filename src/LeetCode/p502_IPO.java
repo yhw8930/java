@@ -32,6 +32,11 @@ public class p502_IPO {
         }
     }
 
+    /**
+     * 小根堆按启动资本保存尚未解锁的项目，大根堆按利润保存当前资本 w 已可执行的项目。
+     * 每轮先把所有 capital≤w 的项目转入利润堆，再选利润最大者；因为利润非负，当前多获得资本不会减少后续选择。
+     * 时间 O((N+K)log N)，额外空间 O(N)。
+     */
     public static int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
         PriorityQueue<Program> minCostQ = new PriorityQueue<>((o1, o2) -> o1.c - o2.c);
         PriorityQueue<Program> maxPriorityQ = new PriorityQueue<>((o1, o2) -> o2.p - o1.p);

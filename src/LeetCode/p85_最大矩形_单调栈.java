@@ -24,6 +24,11 @@ public class p85_最大矩形_单调栈 {
         System.out.println(maximalRectangle(matrix));
     }
 
+    /**
+     * 逐行将矩阵转换为柱状图：heights[j] 是以当前行为底时第 j 列连续 1 的高度。
+     * 每更新一行就用单调栈求该柱状图最大矩形，所有可能的矩形都会在其底边所在行被考虑。
+     * 时间 O(MN)，额外空间 O(N)（类注释中的 O(MN) 空间与当前实现不符）。
+     */
     public static int maximalRectangle(char[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return 0;

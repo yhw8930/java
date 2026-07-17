@@ -14,6 +14,11 @@ public class P72_编辑距离 {
         System.out.println(new P72_编辑距离().minDistance("horse", "ros"));
     }
 
+    /**
+     * dp[i][j] 表示将 word1 的前 i 个字符转换为 word2 的前 j 个字符的最少操作数。
+     * 末尾字符相同时直接沿用 dp[i-1][j-1]；不同时分别考虑删除、插入、替换三个前驱状态并加 1。
+     * 时间复杂度：O(MN)；额外空间：O(MN)。
+     */
     public int minDistance(String word1, String word2) {
         int m = word1.length();
         int n = word2.length();

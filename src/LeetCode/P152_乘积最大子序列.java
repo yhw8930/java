@@ -10,6 +10,12 @@ public class P152_乘积最大子序列 {
         System.out.println(new P152_乘积最大子序列().maxProduct1(ints));
     }
 
+    /**
+     * 数组 DP：max[i] 和 min[i] 分别表示必须以 i 结尾的子数组最大、最小乘积。
+     * 由于负数会使大小关系翻转，两个状态都必须保留；每轮可选重新从 nums[i]
+     * 开始，或将它接到上一位置的最大/最小乘积后。
+     * 时间复杂度：O(N)；额外空间：O(N)。
+     */
     public int maxProduct(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         int[] max = new int[nums.length];
@@ -24,6 +30,11 @@ public class P152_乘积最大子序列 {
         return target;
     }
 
+    /**
+     * 将上述 DP 压缩为 max、min 两个变量。遇到负数时先交换两者，对应负数使
+     * 最大乘积和最小乘积的角色互换；然后判断延长原子数组还是从当前数重新开始。
+     * 时间复杂度：O(N)；额外空间：O(1)。
+     */
     public int maxProduct1(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         int max = nums[0], min = nums[0], target = nums[0];

@@ -5,6 +5,10 @@ package LeetCode;
  */
 public class P21_合并两个有序链表 {
 
+    /**
+     * 递归选择两个当前头节点中较小的一个作为结果头，它的 next 接上剩余部分的合并结果。
+     * 任意一条链表为空时，直接返回另一条。时间 O(M+N)，递归空间 O(M+N)。
+     */
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode list = null;
         if (l1 == null && l2 == null) {
@@ -24,6 +28,10 @@ public class P21_合并两个有序链表 {
         return list;
     }
 
+    /**
+     * 迭代版使用哑节点，每次摘下两条链表中较小的头节点接到结果尾部，
+     * 最后将未耗尽链表整段接上。时间 O(M+N)，额外空间 O(1)。
+     */
     public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
         ListNode pre = new ListNode(0);
         ListNode cur = pre;

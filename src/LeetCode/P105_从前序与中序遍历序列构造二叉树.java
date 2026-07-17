@@ -21,6 +21,12 @@ public class P105_从前序与中序遍历序列构造二叉树 {
 
     }
 
+    /**
+     * 前序区间的第一个值是当前根；在中序区间找到它后，左右两侧分别对应
+     * 左、右子树，中序左区间的长度用来划分前序区间。区间为空时返回 null。
+     * 代码依赖节点值互不相同，且两个遍历序列合法一致。
+     * 时间复杂度：O(N^2)，最坏每层都线性搜索中序区间；递归空间：O(H)。
+     */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         TreeNode root = fun(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
         return root;

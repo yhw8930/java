@@ -9,6 +9,12 @@ import java.util.Queue;
  * 给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
  */
 public class P102_二叉树的层次遍历 {
+    /**
+     * 使用队列做广度优先遍历。每轮先记住队列当前长度 size，这 size 个节点恰好
+     * 属于同一层；依次弹出它们并把子节点加入队尾，就能将结果按层分组。
+     * 空树返回空列表。
+     * 时间复杂度：O(N)；额外空间复杂度：O(W)，W 为树的最大宽度（不计返回结果）。
+     */
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> lists = new ArrayList<>();
         if (root == null) return lists;

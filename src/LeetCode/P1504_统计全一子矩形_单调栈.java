@@ -27,6 +27,12 @@ public class P1504_统计全一子矩形_单调栈 {
         System.out.println(numSubmat(mat));
     }
 
+    /**
+     * 逐行将矩阵压缩为柱状图：height[j] 表示以当前行为底、第 j 列连续 1 的高度。
+     * 对每个柱状图，countFromBottom 用单调栈统计以当前行为底的全 1 子矩形数。
+     * 弹栈时，柱子高度从 down+1 到 height[cur] 的每一层都新贡献 n(n+1)/2 个连续区间。
+     * 时间复杂度：O(MN)；额外空间：O(N)。
+     */
     public static int numSubmat(int[][] mat) {
         if (mat == null || mat.length == 0 || mat[0].length == 0) {
             return 0;

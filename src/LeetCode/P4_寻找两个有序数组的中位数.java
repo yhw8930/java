@@ -6,6 +6,10 @@ package LeetCode;
  * 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
  */
 public class P4_寻找两个有序数组的中位数 {
+    /**
+     * 使用归并排序的合并指针，但只取出到总长度的中间位置。mid1、mid2 保存最近取出的两个数，
+     * 奇数长度返回 mid2，偶数长度返回两者平均值。时间 O(M+N)（实际只扫到一半），空间 O(1)。
+     */
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int n = nums1.length + nums2.length;
         int mid1 = 0, mid2 = 0;
@@ -28,7 +32,11 @@ public class P4_寻找两个有序数组的中位数 {
         }
     }
 
-    //时间复杂度：O(log(min(m,n)))，空间复杂度：O(1)
+    /**
+     * 只在较短数组 A 上二分分割点 i，B 的分割点 j 由左半部总长度唯一确定。
+     * 当 A[i-1]≤B[j] 且 B[j-1]≤A[i] 时，左半部所有数都不大于右半部，可由两侧边界求中位数。
+     * 时间 O(log(min(M,N)))，空间 O(1)。代码依赖两数组不同时为空。
+     */
     public double findMedianSortedArrays1(int[] A, int[] B) {
         int m = A.length;
         int n = B.length;

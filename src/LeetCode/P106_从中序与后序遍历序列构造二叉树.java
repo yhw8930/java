@@ -27,6 +27,12 @@ public class P106_从中序与后序遍历序列构造二叉树 {
         preOrder(root);
     }
 
+    /**
+     * 后序区间的最后一个值是当前根；在中序区间找到根后，左右两侧分别是
+     * 左、右子树，再按中序左区间长度划分后序区间并递归构建。
+     * 代码依赖节点值互不相同，且两个遍历序列合法一致。
+     * 时间复杂度：O(N^2)；递归额外空间：O(H)。
+     */
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         TreeNode root = fun(postorder, 0, postorder.length - 1, inorder, 0, inorder.length - 1);
         return root;

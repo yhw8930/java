@@ -17,6 +17,10 @@ public class P64_最小路径和 {
 
     }
 
+    /**
+     * 一维压缩 DP，选择较短的矩阵维度作为 dp 长度。dp 更新前表示上方，更新后的前一位表示左方，
+     * 每格取两者较小值再加当前权值。时间 O(MN)，额外空间 O(min(M,N))。
+     */
     public int minPathSum1(int[][] grid) {
         if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
             return 0;
@@ -53,6 +57,10 @@ public class P64_最小路径和 {
     }
 
 
+    /**
+     * 二维 DP：dp[i][j] 是从左上角到 (i,j) 的最小路径和。初始化首行首列的唯一路径，
+     * 其余位置由 min(dp[i-1][j],dp[i][j-1])+grid[i][j] 转移。时间、额外空间均为 O(MN)。
+     */
     public int minPathSum(int[][] grid) {
         if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
             return 0;

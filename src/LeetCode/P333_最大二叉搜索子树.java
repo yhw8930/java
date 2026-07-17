@@ -9,6 +9,10 @@ import java.util.ArrayList;
  *
  */
 public class P333_最大二叉搜索子树 {
+    /**
+     * 暴力解：先用中序遍历检查整棵当前子树是否严格递增；若是则直接返回其节点数，
+     * 否则递归求左右子树的最大结果。倾斜树上会重复遍历子树，最坏时间 O(N²)；额外空间 O(N)。
+     */
     public int largestBSTSubtree(TreeNode root) {
         if (root == null) {
             return 0;
@@ -43,6 +47,11 @@ public class P333_最大二叉搜索子树 {
         in(head.right, arr);
     }
 
+    /**
+     * 树形 DP：process 后序返回子树总节点数、最小/最大值、其内最大 BST 大小。
+     * 当左右子树本身都是 BST，且 left.max < x.val < right.min 时，当前整树才是 BST；
+     * 否则答案取左右子树中较大者。时间 O(N)，递归空间 O(H)。
+     */
     public static int largestBSTSubtree2(TreeNode head) {
         if(head == null) {
             return 0;

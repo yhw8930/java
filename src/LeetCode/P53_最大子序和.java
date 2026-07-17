@@ -10,6 +10,11 @@ public class P53_最大子序和 {
         System.out.println(new P53_最大子序和().maxSubArray(nums));
     }
 
+    /**
+     * Kadane 算法：sum 保存以当前位置结尾且值为正时对后续有帮助的前缀和。
+     * 每次先用 sum 更新全局答案，再在 sum<0 时丢弃它，因此全负数组也能正确返回最大的单个元素。
+     * 实际时间复杂度为 O(N)（类注释中的 O(N²) 不准确），额外空间 O(1)。
+     */
     public int maxSubArray(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         int sum = 0;

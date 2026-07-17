@@ -11,6 +11,10 @@ package LeetCode;
  * 时间复杂度：O(n) 空间复杂度：O(1)
  */
 public class P5_最长回文子串 {
+    /**
+     * 暴力枚举每个子串并用双指针检查回文，保留最长者。substring 还会复制字符，
+     * 整体时间复杂度 O(N³)，临时子串空间 O(N)。空串时当前返回 null，与通常期望的 "" 不同。
+     */
     public String longestPalindrome1(String s) {
         if (s == null || s.length() == 0) return null;
         if (s.length() == 1) {
@@ -40,6 +44,10 @@ public class P5_最长回文子串 {
         return true;
     }
 
+    /**
+     * 枚举每个字符中心和每对相邻字符间隙作为回文中心，向两侧扩展到字符不同，
+     * 根据返回长度换算回文起止下标。时间 O(N²)，额外空间 O(1)。
+     */
     public String longestPalindrome3(String s) {
         if (s == null || s.length() < 1) return "";
         int start = 0, end = 0;
@@ -73,6 +81,11 @@ public class P5_最长回文子串 {
         return res;
     }
 
+    /**
+     * Manacher 算法：插入分隔符统一奇偶回文，pArr[i] 保存以 i 为中心的回文半径，
+     * pR 和 index 分别保存当前最右回文边界及其中心，利用镜像半径跳过已知区域。
+     * 返回的是最长回文子串长度，不是子串本身。时间 O(N)，额外空间 O(N)。
+     */
     public int getMaxLcpsLength(String str) {
         if (str == null || str.length() == 0) {
             return 0;

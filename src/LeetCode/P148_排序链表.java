@@ -6,6 +6,12 @@ import java.util.Map;
  * NlogN 时间复杂度和常数级空间复杂度下，对链表进行排序
  */
 public class P148_排序链表 {
+    /**
+     * 入口选用链表归并排序：快慢指针将链表从中间断开，递归排序两半，
+     * 再通过改变 next 指针线性合并两个有序链表。递归终止于空链表或单节点链表。
+     * 时间复杂度：O(N log N)；递归额外空间：O(log N)。
+     * 注：这不是严格的 O(1) 额外空间实现，因为使用了递归调用栈。
+     */
     public ListNode sortList(ListNode head) {
         return mergeSort(head);
         //quickSort(head, null);

@@ -25,6 +25,12 @@ public class P1856_子数组最小乘积的最大值_单调栈 {
         System.out.println(maxSumMinProduct(nums));
     }
 
+    /**
+     * 前缀和用于 O(1) 计算任意子数组的和，单调递增栈用于找每个 nums[j] 作为最小值时
+     * 能向左右扩展的最大范围。遇到不大于栈顶的数时弹栈结算；扫描结束后再结算剩余元素。
+     * 由于 nums 全为正数，当最小值固定时扩展范围会使区间和变大，所以取最大可扩展范围即最优。
+     * 时间复杂度：O(N)；额外空间：O(N)。
+     */
     public static int maxSumMinProduct(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;

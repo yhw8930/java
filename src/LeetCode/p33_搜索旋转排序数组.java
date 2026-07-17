@@ -20,6 +20,11 @@ public class p33_搜索旋转排序数组 {
 
     }
 
+    /**
+     * 以 nums[0] 为分界判断 target 和 nums[mid] 各属旋转数组的前半有序段还是后半有序段。
+     * 若二者在同一段，按大小关系收缩二分边界；不在同一段时，直接排除 mid 所在的那一段。
+     * 时间 O(log N)，额外空间 O(1)。代码依赖数组内没有重复值。
+     */
     public int search(int[] nums, int target) {
         if (nums == null || nums.length == 0) return -1;
         if (target == nums[0]) return 0;

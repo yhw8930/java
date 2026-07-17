@@ -14,6 +14,11 @@ public class P14_最长公共前缀 {
         System.out.println(new P14_最长公共前缀().longestCommonPrefix(strs));
     }
 
+    /**
+     * 以第一个字符串作为候选前缀，按列比较所有字符串的同一位置。
+     * 一旦某个字符串已经结束或字符不同，当前位置之前的部分就是最长公共前缀。
+     * 设字符串数量为 N，最短字符串长度为 L；时间复杂度 O(NL)，额外空间 O(1)。
+     */
     public String longestCommonPrefix(String[] strs) {
         if (strs == null || strs.length == 0) return "";
         for (int i = 0; i < strs[0].length(); i++) {

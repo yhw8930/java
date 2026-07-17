@@ -27,6 +27,11 @@ public class P494_目标和_01背包dp {
     // 把P= target+N 代入P + N = sum，得到 target + N + N = sum，即 2N = sum - target， N = (sum - target) / 2
     // N = (sum - target)/2 问题转换为从nums中选若干个数组成N的方法数
 
+    /**
+     * 设添加负号的数之和为 N，则 sum-2N=target，问题转化为从 nums 中选出若干数使和为
+     * (sum-target)/2 的方案数。dp[index][rest] 统计使用 index.. 凑 rest 的方案，每个数选或不选。
+     * 时间 O(N·bag)，额外空间 O(N·bag)。
+     */
     public static int findTargetSumWays(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -53,6 +58,10 @@ public class P494_目标和_01背包dp {
         return dp[0][n];
     }
 
+    /**
+     * 上述 0/1 背包的一维压缩。dp[rest] 是凑出 rest 的方案数；对每个 num 必须倒序遍历 rest，
+     * 避免同一个数在本轮被重复选取。时间 O(N·bag)，额外空间 O(bag)。
+     */
     public static int findTargetSumWays2(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -78,6 +87,10 @@ public class P494_目标和_01背包dp {
         return dp[bag];
     }
 
+    /**
+     * 暴力递归为每个数枚举添加正号或负号两个分支；到达数组末尾时，剩余目标为 0 贡献一种方案。
+     * 时间复杂度 O(2^N)，递归空间 O(N)。
+     */
     public static int findTargetSumWays1(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return 0;

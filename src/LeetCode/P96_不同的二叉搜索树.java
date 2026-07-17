@@ -19,6 +19,11 @@ public class P96_不同的二叉搜索树 {
 
     }
 
+    /**
+     * dp[i] 表示由 i 个有序不同值构成的 BST 数量。枚举第 j 个值作根时，左右子树分别有
+     * j-1 和 i-j 个节点，组合数为 dp[j-1]*dp[i-j]，对所有根求和。dp[0]=1 表示空子树有一种结构。
+     * 时间 O(N²)，额外空间 O(N)。当前实现依赖 n≥1，n=0 时 dp[1] 会越界。
+     */
     public int numTrees(int n) {
         int[] dp = new int[n + 1];
         dp[0] = 1;

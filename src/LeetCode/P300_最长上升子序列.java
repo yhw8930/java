@@ -16,6 +16,11 @@ public class P300_最长上升子序列 {
         System.out.println(new P300_最长上升子序列().lengthOfLIS(ints));
     }
 
+    /**
+     * dp[i] 表示必须以 nums[i] 结尾的最长严格上升子序列长度，初始为 1。
+     * 枚举所有 j<i，若 nums[j]<nums[i]，就可将 i 接在以 j 结尾的序列后，用 dp[j]+1 更新。
+     * 时间复杂度：O(N^2)；额外空间：O(N)。
+     */
     public int lengthOfLIS(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         int[] dp = new int[nums.length];

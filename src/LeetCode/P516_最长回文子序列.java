@@ -12,6 +12,11 @@ public class P516_最长回文子序列 {
         System.out.println(longestPalindromeSubseq(s));
     }
 
+    /**
+     * 区间 DP：dp[l][r] 表示 s[l..r] 的最长回文子序列长度。答案至少来自跳过左端或右端；
+     * 若两端字符相同，还可将它们包在 dp[l+1][r-1] 两侧。按 l 递减、r 递增的顺序填表。
+     * 时间 O(N²)，额外空间 O(N²)。
+     */
     public static int longestPalindromeSubseq(String s) {
         if (s == null || s.isEmpty()) {
             return 0;
@@ -35,6 +40,10 @@ public class P516_最长回文子序列 {
         return dp[0][N - 1];
     }
 
+    /**
+     * 将二维区间 DP 压缩为一维。dp[j] 更新前是下方状态，更新后是当前行左方状态，
+     * leftDown 专门保存左下对角状态 dp[i+1][j-1]。时间 O(N²)，额外空间 O(N)。
+     */
     public int longestPalindromeSubseq3(String s) {
         if (s == null || s.length() == 0) {
             return 0;
@@ -58,6 +67,10 @@ public class P516_最长回文子序列 {
         return dp[n - 1];
     }
 
+    /**
+     * 暴力递归枚举区间两端的取舍：跳过左端、跳过右端，或在字符相同时同时保留两端。
+     * 无记忆化会重复求解大量区间，时间复杂度为指数级，递归空间 O(N)。
+     */
     public static int longestPalindromeSubseq1(String s) {
         if (s == null || s.isEmpty()) {
             return 0;

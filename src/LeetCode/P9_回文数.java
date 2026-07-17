@@ -7,6 +7,11 @@ package LeetCode;
  */
 public class P9_回文数 {
 
+    /**
+     * 只反转数字的后半部分，避免整个反转可能溢出。负数不是回文，非 0 且末位为 0 的数也不可能是回文。
+     * 当原数 x≤已反转部分 temp 时到达中点；偶数位比较 x==temp，奇数位通过 temp/10 忽略中间位。
+     * 时间 O(log|x|)，空间 O(1)。
+     */
     public boolean isPalindrome(int x) {
         if (x < 0 || (x % 10 == 0 && x != 0)) return false;
         int temp = 0;

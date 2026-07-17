@@ -21,6 +21,12 @@ public class P135_分发糖果 {
         System.out.println(new P135_分发糖果().candy(arr));
     }
 
+    /**
+     * left[i] 满足第 i 个孩子与左邻居的约束，right[i] 满足它与右邻居的约束。
+     * 两次相反方向的遍历分别计算这两个下界，每个位置取 max(left[i], right[i])
+     * 才能同时满足两侧，且正好是该位置的最小可行糖果数。
+     * 时间复杂度：O(N)；额外空间：O(N)。
+     */
     public int candy(int[] ratings) {
         int sum = 0;
         int[] left = new int[ratings.length];

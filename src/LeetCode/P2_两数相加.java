@@ -7,6 +7,11 @@ package LeetCode;
  * 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
  */
 public class P2_两数相加 {
+    /**
+     * 按个位到高位同步遍历两条链表，缺失位按 0 处理。sum%10 是当前结果位，
+     * sum/10 是传给下一位的进位；遍历后若仍有进位则追加一个节点。
+     * 时间复杂度：O(max(M,N))；返回链表之外的额外空间：O(1)。
+     */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null && l2 == null) {
             return null;

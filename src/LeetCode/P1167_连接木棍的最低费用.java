@@ -16,6 +16,11 @@ public class P1167_连接木棍的最低费用 {
         System.out.println(connectSticks(sticks));
     }
 
+    /**
+     * 使用小根堆反复取出当前最短的两根木棍合并，将本次代价加入答案，
+     * 再把新木棍放回堆。越早合并的长度会被重复计入后续代价，因此每次选最小的两根最优。
+     * 时间复杂度：O(N log N)；额外空间：O(N)。
+     */
     public static int connectSticks(int[] sticks) {
         PriorityQueue<Integer> pQ = new PriorityQueue<>();
         for (int stick : sticks) {

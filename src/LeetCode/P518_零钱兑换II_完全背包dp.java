@@ -20,7 +20,11 @@ public class P518_零钱兑换II_完全背包dp {
         System.out.println(change(5, ints));
     }
 
-    // coins[index....] 所有的面值，每一个面值都可以任意选择张数，组成正好rest这么多钱，方法数多少？
+    /**
+     * dp[index][rest] 表示使用 coins[index..] 凑出 rest 的组合数。转移为不用当前面值，
+     * 加上至少用一枚当前面值的方案；后者依赖本行 rest-coin，体现可重复使用。
+     * 时间 O(N·amount)，额外空间 O(N·amount)。
+     */
     public static int change(int amount, int[] coins) {
         if (coins == null || coins.length == 0 || amount < 0) {
             return 0;
@@ -39,6 +43,11 @@ public class P518_零钱兑换II_完全背包dp {
         return dp[0][amount];
     }
 
+    /**
+     * 一维完全背包：dp[rest] 是凑 rest 的组合数。先枚举硬币、再正序枚举金额，
+     * 既允许重复使用当前硬币，又避免将选取顺序不同的同一组合重复计数。
+     * 时间 O(N·amount)，额外空间 O(amount)。
+     */
     public int change3(int amount, int[] coins) {
         if (coins == null || coins.length == 0 || amount < 0) {
             return 0;
@@ -54,6 +63,10 @@ public class P518_零钱兑换II_完全背包dp {
         return dp[amount];
     }
 
+    /**
+     * 未优化的二维 DP，每个状态显式枚举当前面值使用张数。
+     * 时间最坏 O(N·amount²/minCoin)，额外空间 O(N·amount)。
+     */
     public static int change1(int[] coins, int amount) {
         if (coins == null || coins.length == 0 || amount < 0) {
             return 0;
@@ -73,6 +86,10 @@ public class P518_零钱兑换II_完全背包dp {
         return dp[0][amount];
     }
 
+    /**
+     * 暴力递归枚举每种面值使用张数，并把剩余金额交给后续面值。
+     * 无记忆化，时间复杂度为指数级；递归空间 O(N)。
+     */
     public static int change2(int amount, int[] coins) {
         if (coins == null || coins.length == 0) {
             return 0;

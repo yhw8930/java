@@ -15,6 +15,11 @@ public class P55_跳跃游戏 {
         System.out.println(new P55_跳跃游戏().canJump(ints));
     }
 
+    /**
+     * 从右向左贪心维护 last：last 是当前必须到达的最左“好位置”。
+     * 若 i+nums[i]>=last，说明从 i 能到达已知可达终点的位置，因此将 last 更新为 i。
+     * 最后 last==0 当且仅当起点可到终点。时间 O(N)，空间 O(1)。
+     */
     public boolean canJump(int[] nums) {
         int last = nums.length - 1;
         for (int i = last; i >= 0; i--) {

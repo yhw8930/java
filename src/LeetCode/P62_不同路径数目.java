@@ -10,6 +10,11 @@ public class P62_不同路径数目 {
         System.out.println(new P62_不同路径数目().uniquePaths(7, 3));
     }
 
+    /**
+     * dp[i][j] 是到达网格 (i,j) 的路径数。第一行和第一列只有一种走法；
+     * 其他位置只能从上方或左方到达，因此 dp[i][j]=dp[i-1][j]+dp[i][j-1]。
+     * 时间 O(MN)，额外空间 O(MN)。
+     */
     public int uniquePaths(int m, int n) {
         int[][] dp = new int[m][n];
         for (int i = 0; i < m; i++) {
@@ -24,6 +29,10 @@ public class P62_不同路径数目 {
         return dp[m - 1][n - 1];
     }
 
+    /**
+     * 带障碍版路径 DP：障碍格的路径数为 0，非障碍格仍累加上方和左方。
+     * 首行首列通过沿用前一格的路径数处理“障碍之后都不可达”。时间、空间均为 O(MN)。
+     */
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;

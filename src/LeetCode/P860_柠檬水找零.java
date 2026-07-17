@@ -21,6 +21,11 @@ public class P860_柠檬水找零 {
         System.out.println(new P860_柠檬水找零().lemonadeChange(ints));
     }
 
+    /**
+     * 只需统计 5 元和 10 元钞票。20 元需找 15 时优先使用一张 10 元和一张 5 元，
+     * 因为 5 元能为 10 元和 20 元都找零，更稀缺；没有 10 元时才使用三张 5 元。
+     * 任一步无法找零则立即返回 false。时间 O(N)，空间 O(1)。
+     */
     public boolean lemonadeChange(int[] bills) {
         int five = 0, ten = 0;
         for (int bill : bills) {

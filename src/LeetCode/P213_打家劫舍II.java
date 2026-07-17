@@ -6,6 +6,11 @@ package LeetCode;
  * 给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能够偷窃到的最高金额
  */
 public class P213_打家劫舍II {
+    /**
+     * 环形中第一间和最后一间不能同时选，因此答案只可能来自两种线性情况：
+     * 不考虑最后一间，或不考虑第一间。分别用滚动 DP 求最优值后取较大者。
+     * 时间复杂度：O(N)；额外空间：O(1)。
+     */
     public int rob(int[] nums) {
         if (nums == null || nums.length == 0) return 0;
         if (nums.length == 1) return nums[0];
